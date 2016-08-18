@@ -1,0 +1,12 @@
+.cell {
+  font-size: 150px;
+  color: purple;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 150px;
+  height: 150px;
+  margin: 5px;
+  float: left;
+  line-height: 150px;
+}
