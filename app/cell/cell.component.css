@@ -8,5 +8,22 @@
   height: 150px;
   margin: 5px;
   float: left;
-  line-height: 150px;
+}
+.o-class {
+  display: block;
+  background: url('app/images/o.jpg') no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+}
+.x-class {
+    display: block;
+  background: url('app/images/x.jpg') no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
 }
