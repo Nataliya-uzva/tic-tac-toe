@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -10,20 +9,22 @@ import {Input} from '@angular/core';
 export class CellComponent implements OnInit {
 
   @Input()
-  public val: string;
+  public cell: any;
+  @Input()
+  public stopClick: boolean;
+
+  @Output()
+  check: EventEmitter<any> = new EventEmitter();
 
   constructor() {
-
+    console.log(this);
   }
 
   changeState() {
-    if(this.val === ''){
-      this.val = 'X'
-
-    }else if(this.val === 'X'){
-      this.val = '0';
-
-    }
+   if (this.cell.temp) {
+     this.cell.temp = !this.cell.temp;
+     this.check.emit({cell: this.cell});
+   }
   }
   ngOnInit() {
   }

@@ -1,5 +1,4 @@
-<h1> Крестики нолики</h1>
+<h1>Tic Tac Toe</h1>
 <div class="field">
-  <cell *ngFor="let item of arr" [val]="item.param"></cell>
-</div>
-
+    <cell *ngFor="let item of arr" [cell]="item" [stopClick]="stopClick" (check)="changeState($event.cell)"></cell>
+ </div>
