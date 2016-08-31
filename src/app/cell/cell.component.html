@@ -1,4 +1,4 @@
-<div (click)="changeState()" class="cell">
+<div (click)="stopClick && changeState()" class="cell">
   <span *ngIf="cell.param === 'x'"  class="x-class" ></span>
   <span *ngIf="cell.param === 'o'"  class="o-class" ></span>
 </div>
