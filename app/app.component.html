@@ -1,4 +1,16 @@
 <h1>Tic Tac Toe</h1>
-<div class="field">
-    <cell *ngFor="let item of arr" [cell]="item" [stopClick]="stopClick" (check)="changeState($event.cell)"></cell>
- </div>
+<div class="field-wrapper">
+  <div class="field">
+      <div *ngFor="let line of arr" class="line">
+        <cell class="cell" *ngFor="let item of line" [cell]="item" [stopClick]="stopClick" (check)="changeState($event.cell)"></cell>
+      </div>
+  </div>
+</div>
+<div class="buttons">
+  <h2 *ngIf="winner">{{player}} Win!!!</h2>
+  <label for="dim">Dimension of the field</label>
+  <input type="number" id="dim" min="3" [(ngModel)]="dimension"><br>
+  <label for="line">Length of the winning line</label>
+  <input type="number" id="line" min="3" [(ngModel)]="line"><br>
+  <button (click)="restartGame(3)" >Reset game</button>
+</div>

@@ -1,4 +1,3 @@
 <div (click)="stopClick && changeState()" class="cell">
-  <span *ngIf="cell.param === 'x'"  class="x-class" ></span>
-  <span *ngIf="cell.param === 'o'"  class="o-class" ></span>
+  <span class="x-class" [ngClass]="{'x-class': cell.param === 'x', 'o-class': cell.param === 'o'}"></span>
 </div>
