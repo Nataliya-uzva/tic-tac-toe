@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CellComponent } from './cell';
-import {every} from "rxjs/operator/every";
 
 @Component({
   moduleId: module.id,
@@ -14,19 +13,26 @@ export class AppComponent {
   public stopClick = true;
   public start = 0;
   public turn = false;
-  public dimension = 3;
-  public line = 3;
+  public dimension = 5;
+  public line = 4;
   public steps = {'x': [], 'o': []};
   public winCombination = [];
+  public winner = false;
+  public player = '';
 
   constructor() {
     this.generateList(this.dimension);
    }
 
   generateList(count){
-    for(let i = 0; i < (count * count); i++){
-        this.arr.push(this.createItem(i));
+    let temp = 0;
+    for(let i = 0; i < count; i++){
+        this.arr[i] = [];
+      for (let j = 0; j < count; j++) {
+        this.arr[i][j] = this.createItem(temp);
+        temp++;
       }
+    }
   }
 
   createItem(num){
@@ -50,6 +56,7 @@ export class AppComponent {
           console.log(this.winCombination);
         }
        this.checkVin(cell.param);
+      this.winner = !this.winner;
     }
   }
 // horizontal
@@ -110,23 +117,34 @@ export class AppComponent {
     }
   // left diagonal
     for (let j = 0; j < (this.dimension * (this.dimension - this.line + 1)); j += this.dimension) {
-      for (let i = this.dimension - 1; i < this.dimension; i++) {
+      for (let i = this.line - 1; i < this.dimension; i++) {
         this.winCombination.push(this.getRange3(i + j));
       }
     }
   }
 
   checkVin(param) {
-   for (let i = 0; i < this.winCombination.length; i++) {
+     for (let i = 0; i < this.winCombination.length; i++) {
 
-    if (this.winCombination[i].every((number) => {
-        return this.steps[param].indexOf(number) !== -1;
-      })) {
-      this.stopClick = !this.stopClick;
-      console.log(param + ' win!');
-    }
-
+        if (this.winCombination[i].every((number) => {
+            return this.steps[param].indexOf(number) !== -1;
+          })) {
+          this.stopClick = !this.stopClick;
+          console.log(param + ' win!');
+          this.player = ('' + param).toUpperCase();
+        }
+     }
   }
-
+  restartGame () {
+    this.line = (this.dimension >= this.line) ? this.line : this.dimension;
+    this.arr.length = 0;
+    this.winCombination.length = 0;
+    this.steps.x = [];
+    this.steps.o = [];
+    this.start = 0;
+    this.stopClick = true;
+    this.turn = false;
+    this.winner = false;
+    this.generateList(this.dimension);
   }
 }
