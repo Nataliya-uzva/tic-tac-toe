@@ -9,15 +9,17 @@
 .line {
   display: inline-block;
    width: 100%;
-  min-width: 200px;
 }
-h1 {
+h1, h2 {
   text-align: center;
   color: #4169E1;
 }
+.hide {
+  display: none;
+}
 .buttons {
-  width: 500px;
-  height: 500px;
+  width: 350px;
+  height: 200px;
   margin: auto;
   text-align: center;
 }
