@@ -19,6 +19,7 @@ export class AppComponent {
   public winCombination = [];
   public winner = false;
   public player = '';
+  public noWinner = false;
 
   constructor() {
     this.generateList(this.dimension);
@@ -48,15 +49,19 @@ export class AppComponent {
     this.turn = !this.turn;
     this.start += 1;
     this.steps[cell.param].push(cell.index);
-    console.log(this.steps);
 
     if (this.start >= ((this.line * 2) - 1)) {
         if (!this.winCombination.length) {
           this.generateWinCombinations();
-          console.log(this.winCombination);
         }
-       this.checkVin(cell.param);
-      this.winner = !this.winner;
+        if (this.checkVin(cell.param)) {
+          this.winner = !this.winner;
+          this.stopClick = !this.stopClick;
+          this.player = (cell.param).toUpperCase();
+        }
+    }
+    if (this.start === (this.dimension * this.dimension)) {
+      this.noWinner = true;
     }
   }
 // horizontal
@@ -124,27 +129,30 @@ export class AppComponent {
   }
 
   checkVin(param) {
+    let check = false;
      for (let i = 0; i < this.winCombination.length; i++) {
 
         if (this.winCombination[i].every((number) => {
             return this.steps[param].indexOf(number) !== -1;
           })) {
-          this.stopClick = !this.stopClick;
-          console.log(param + ' win!');
-          this.player = ('' + param).toUpperCase();
+          check = true;
+          break;
         }
      }
+     return check;
   }
   restartGame () {
     this.line = (this.dimension >= this.line) ? this.line : this.dimension;
     this.arr.length = 0;
     this.winCombination.length = 0;
-    this.steps.x = [];
-    this.steps.o = [];
+    this.steps.x.length = 0;
+    this.steps.o.length = 0;
     this.start = 0;
     this.stopClick = true;
     this.turn = false;
     this.winner = false;
+    this.player = '';
+    this.noWinner = false;
     this.generateList(this.dimension);
   }
 }

@@ -17,7 +17,6 @@ export class CellComponent implements OnInit {
   check: EventEmitter<any> = new EventEmitter();
 
   constructor() {
-    console.log(this);
   }
 
   changeState() {

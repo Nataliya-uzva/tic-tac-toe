@@ -1,4 +1,6 @@
 <h1>Tic Tac Toe</h1>
+<h2 *ngIf="winner">{{player}} Win!!!</h2>
+<h2 [ngClass]="{hide: !noWinner}">Sorry, standoff! Try again!</h2>
 <div class="field-wrapper">
   <div class="field">
       <div *ngFor="let line of arr" class="line">
@@ -7,10 +9,9 @@
   </div>
 </div>
 <div class="buttons">
-  <h2 *ngIf="winner">{{player}} Win!!!</h2>
   <label for="dim">Dimension of the field</label>
-  <input type="number" id="dim" min="3" [(ngModel)]="dimension"><br>
+  <input type="number" id="dim" min="3" max="10" [(ngModel)]="dimension"><br>
   <label for="line">Length of the winning line</label>
-  <input type="number" id="line" min="3" [(ngModel)]="line"><br>
-  <button (click)="restartGame(3)" >Reset game</button>
+  <input type="number" id="line" min="3" max="10" [(ngModel)]="line"><br>
+  <button (click)="restartGame()" >Reset game</button>
 </div>
