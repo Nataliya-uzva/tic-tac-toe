@@ -9,17 +9,17 @@ import { CellComponent } from './cell';
   directives: [CellComponent]
 })
 export class AppComponent {
-  public arr = [];
-  public stopClick = true;
-  public start = 0;
-  public turn = false;
-  public dimension = 5;
-  public line = 4;
-  public steps = {'x': [], 'o': []};
-  public winCombination = [];
-  public winner = false;
-  public player = '';
-  public noWinner = false;
+  private arr = [];
+  private stopClick = true;
+  private start = 0;
+  private turn = false;
+  private dimension = 5;
+  private line = 4;
+  private steps = {'x': [], 'o': []};
+  private winCombination = [];
+  private winner = false;
+  private player = '';
+  private noWinner = false;
 
   constructor() {
     this.generateList(this.dimension);
@@ -35,11 +35,9 @@ export class AppComponent {
       }
     }
   }
-
   createItem(num){
     return {param: '', temp: true, index: num};
   }
-
   changeState(cell){
     if (!cell.param && !this.start) {
       cell.param = 'x';
